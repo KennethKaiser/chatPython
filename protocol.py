@@ -1,5 +1,6 @@
-def requestTest(clientIP):
-    return 'lol-02 {}'.format(clientIP)
+# Hack protocol requst
+def requestHack(clientIP):
+    return 'lol-02 {}.'.format(clientIP)
 
 def request(clientIP):
     return 'com-0 {}.'.format(clientIP)
@@ -12,6 +13,8 @@ def serverAccept(serverIP):
 def clientAccept():
     return 'com-0 accept'
 
+def clientAcceptHack():
+    return 'hack-123 accept'
 
 def clientMessage(number, msg):
     return 'msg-{}={}'.format(number, msg)

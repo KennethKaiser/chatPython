@@ -1,4 +1,3 @@
-import multiprocessing
 import socket
 import sys
 from configparser import ConfigParser
@@ -42,7 +41,10 @@ def chatFunction():
                 sent = sock.sendto(ackReset().encode(), server_address)
                 accepted = False
                 sock.close()
-            count = count + 1
+            #real count
+            #count = count + 1
+            #Wrong count
+            count = count + 5
 
 
     sock.close()
@@ -115,8 +117,11 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 # count message number
 count = 0
 server_address = ('127.0.0.1', 20000)
-# message in three way handshake
+
+# Right request message
 message = request(server_address[0]).encode()
+# Wrong request message
+#message = requestHack(server_address[0]).encode()
 
 accepted = False
 # Send data
@@ -129,8 +134,14 @@ sent = sock.sendto(message, server_address)
 data, server = sock.recvfrom(4096)
 print('\nServer: {}'.format(data.decode()))
 if data.decode() == serverAccept(server_address[0]):
+
+
     print('\nClient {}'.format(clientAccept()))
+
+    # Right client accept
     sent = sock.sendto(clientAccept().encode(), server_address)
+    # Wrong accept
+    #sent = sock.sendto(clientAcceptHack().encode(), server_address)
     accepted = True
 else:
     sock.close()
